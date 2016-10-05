@@ -1,0 +1,40 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.anychart.com/js/7.11.1/anychart-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.anychart.com/css/latest/anychart-ui.min.css" />
+    <link rel="stylesheet" href="{% static 'static/style.css' %}">
+</head>
+
+<body>
+<input type='checkbox' class="invis" id='open_close' />
+{% for gr in groups %}
+<input type='radio' name='opts' class="invis" id='opt{{ gr.id }}' />
+{% endfor %}
+<header class="header-base">
+  <h1 class="header__title">Список груп:</h1>
+
+  <p>
+    выберите регион
+  </p>
+
+  <div class="select-area">
+    <label for="open_close" class="input-select">
+    </label>
+
+    <ul class="select-options">
+        {% for gr in groups %}
+        <li>
+            <label for="opt{{ gr.id }}"><a href="/{{ gr.id }}/">{{ gr.group_region }}</a></label>
+        </li>
+        {% endfor %}
+    </ul>
+  </div>
+</header>
+<main role="main" class="main-content">
+    {% block output %}{% endblock %}
+</main>
+</body>
+</html>
