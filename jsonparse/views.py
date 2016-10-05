@@ -42,6 +42,5 @@ def data_processing(request):
 
 def data_container(request, group_id):
     countries = Countries.objects.filter(country_from=group_id).values_list('country_name', 'country_value')
-    country_val = []
-
-    return render_to_response('output.html', {'country': list(countries), 'group_id': group_id})
+    country_val = (list(map(list, countries)))
+    return render_to_response('output.html', {'country': country_val, 'group_id': group_id, 'groups': Group.objects.all()})

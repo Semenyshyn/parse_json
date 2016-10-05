@@ -10,9 +10,7 @@
 
 <body>
 <input type='checkbox' class="invis" id='open_close' />
-{% for gr in groups %}
-<input type='radio' name='opts' class="invis" id='opt{{ gr.id }}' />
-{% endfor %}
+
 <header class="header-base">
   <h1 class="header__title">Список груп:</h1>
 
@@ -27,10 +25,11 @@
     <ul class="select-options">
         {% for gr in groups %}
         <li>
-            <label for="opt{{ gr.id }}"><a href="/{{ gr.id }}/">{{ gr.group_region }}</a></label>
+            <a href="/{{ gr.id|safe }}/">{{ gr.group_region|safe }}</a>
         </li>
         {% endfor %}
     </ul>
+
   </div>
 </header>
 <main role="main" class="main-content">
