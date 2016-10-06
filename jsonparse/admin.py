@@ -1,4 +1,5 @@
 from django.contrib import admin
-# from .models import Groups
+from .models import Group, Countries
 
-# admin.site.register(Groups)
+admin.site.register(Group)
+admin.site.register(Countries)
