@@ -15,16 +15,13 @@ chart = anychart.column();
 chart.animation(true);
 
 // set chart title text settings
-{#chart.title('{{ group_list.0|safe }}');#}
+{#chart.title({{ region.group_region }});#}
 
 // create area series with passed data
     {% autoescape off %}
-
 var series = chart.column(
     {{ country }}
-
 );
-
     {% endautoescape %}
 
 // set series tooltip settings
@@ -35,13 +32,11 @@ series.tooltip().titleFormatter(function() {
 series.tooltip().textFormatter(function() {
     return parseInt(this.value).toLocaleString()
 });
+
 series.tooltip().position('top').anchor('bottom').offsetX(0).offsetY(5);
 
 // set scale minimum
 chart.yScale().minimum(0);
-
-// set yAxis labels formatter
-chart.yAxis().labels().textFormatter("{%Value}");
 
 // tooltips position and interactivity settings
 chart.tooltip().positionMode('point');

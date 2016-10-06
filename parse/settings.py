@@ -15,6 +15,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -56,8 +57,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            '/home/ivan/parseenv/bin/parse/jsonparse/templates/jsonparse',
-            '/home/ivan/parseenv/bin/parse/templates/',
+            os.path.join(os.path.dirname(PACKAGE_ROOT), 'jsonparse/templates/jsonparse'),
+            os.path.join(os.path.dirname(PACKAGE_ROOT), 'templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -107,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-RU'
 
 TIME_ZONE = 'Europe/Kiev'
 
@@ -123,6 +124,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    ('static', '/home/ivan/parseenv/bin/parse/static'),
-)
+STATICFILES_DIRS = [('static', os.path.join(os.path.dirname(PACKAGE_ROOT), 'static'))]
